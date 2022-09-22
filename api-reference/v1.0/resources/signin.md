@@ -28,7 +28,7 @@ The availability of sign-in logs is governed by the [Azure AD data retention pol
 |appDisplayName|String|App name displayed in the Azure Portal. Supports `$filter` (`eq` and `startsWith` operators only).|
 |appId|String|Unique GUID representing the app ID in the Azure Active Directory. Supports `$filter` (`eq` operator only).|
 |appliedConditionalAccessPolicy|[appliedConditionalAccessPolicy](appliedconditionalaccesspolicy.md) collection|Provides a list of conditional access policies that are triggered by the corresponding sign-in activity.|
-|clientAppUsed|String|Identifies the client used for the sign-in activity. Modern authentication clients include `Browser` and `modern clients`. Legacy authentication clients include `Exchange ActiveSync`, `IMAP`, `MAPI`, `SMTP`, `POP`, and `other clients`. Supports `$filter` (`eq` operator only).|
+|clientAppUsed|String|Identifies the client used for the sign-in activity. Modern authentication clients include `Browser` and `modern clients`. Legacy authentication clients include `Exchange ActiveSync`, `IMAP`, `MAPI`, `SMTP`, `POP`, and `other clients`. Supports `$filter` (`eq` operator only). See table below|
 |conditionalAccessStatus|conditionalAccessStatus| Reports status of an activated conditional access policy. Possible values are: `success`, `failure`, `notApplied`, and `unknownFutureValue`. Supports `$filter` (`eq` operator only).|
 |correlationId|String|The request ID sent from the client when the sign-in is initiated; used to troubleshoot sign-in activity. Supports `$filter` (`eq` operator only).|
 |createdDateTime|DateTimeOffset|Date and time (UTC) the sign-in was initiated. Example: midnight on Jan 1, 2014 is reported as `2014-01-01T00:00:00Z`. Supports `$orderby` and `$filter` (`eq`, `le`, and `ge` operators only).|
@@ -49,6 +49,26 @@ The availability of sign-in logs is governed by the [Azure AD data retention pol
 |userDisplayName|String|Display name of the user that initiated the sign-in. Supports `$filter` (`eq` and `startsWith` operators only).|
 |userId|String|ID of the user that initiated the sign-in. Supports `$filter` (`eq` operator only).|
 |userPrincipalName|String|User principal name of the user that initiated the sign-in. Supports `$filter` (`eq` and `startsWith` operators only).|
+
+## [clientAppUsed](https://learn.microsoft.com/en-us/azure/active-directory/reports-monitoring/concept-sign-ins?source=recommendations) name table
+
+|Name|Modern authentication|Description|
+|:---------------|:--------|:----------|
+|Authenticated SMTP|No|Used by POP and IMAP client's to send email messages.|
+|Autodiscover|No|Used by Outlook and EAS clients to find and connect to mailboxes in Exchange Online.|
+|Exchange ActiveSync|No|This filter shows all sign-in attempts where the EAS protocol has been attempted. Shows all sign-in attempts from users with client apps using Exchange ActiveSync to connect to Exchange Online.|
+|Browser|Yes|Shows all sign-in attempts from users using web browsers.|
+|Exchange Online PowerShell|No|Used to connect to Exchange Online with remote PowerShell. If you block basic authentication for Exchange Online PowerShell, you need to use the Exchange Online PowerShell module to connect. For instructions, see Connect to Exchange Online PowerShell using multi-factor authentication.|
+|Exchange Web Services|No|A programming interface that's used by Outlook, Outlook for Mac, and third-party apps.|
+|IMAP4|No|A legacy mail client using IMAP to retrieve email.|
+|MAPI over HTTP|No|Used by Outlook 2010 and later.|
+|Mobile apps and desktop clients|Yes|Shows all sign-in attempts from users using mobile apps and desktop clients.|
+|Offline Address Book|No|A copy of address list collections that are downloaded and used by Outlook.|
+|Outlook Anywhere (RPC over HTTP)|No|Used by Outlook 2016 and earlier.|
+|Outlook Service|No|Used by the Mail and Calendar app for Windows 10.|
+|POP3|No|A legacy mail client using POP3 to retrieve email.|
+|Reporting Web Services|No|Used to retrieve report data in Exchange Online.|
+|Other clients|No|Shows all sign-in attempts from users where the client app is not included or unknown.|
 
 ## Relationships
 
